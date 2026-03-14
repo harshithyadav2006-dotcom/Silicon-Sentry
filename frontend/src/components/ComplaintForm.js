@@ -14,8 +14,8 @@ const buildInitialForm = (currentUser) => ({
   photos: [],
 });
 
-const API_URL = "http://localhost:5000/api/complaints";
-const SPEECH_API_URL = "http://localhost:5000/api/speech/transcribe";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/complaints`;
+const SPEECH_API_URL = `${process.env.REACT_APP_API_URL}/api/speech/transcribe`;
 const DEFAULT_WHATSAPP_NUMBER = "918800001915";
 const LANGUAGE_TO_GOOGLE = {
   en: "en-IN",
@@ -164,7 +164,7 @@ function ComplaintForm({
 
       const data = await parseApiResponse(
         response,
-        "Unable to support this issue right now. Make sure the backend server is running on http://localhost:5000."
+        `Unable to support this issue right now. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {
@@ -214,7 +214,7 @@ function ComplaintForm({
 
       const data = await parseApiResponse(
         response,
-        "Unable to submit the complaint. Make sure the backend server is running on http://localhost:5000."
+        `Unable to submit the complaint. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {

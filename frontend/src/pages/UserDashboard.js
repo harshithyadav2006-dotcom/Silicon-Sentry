@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { parseApiResponse } from "../utils/api";
 import { formatCategory, formatStatus } from "../content/formatters";
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/complaints`;
 
 const labels = {
   eyebrow: "Citizen workspace",
@@ -34,7 +34,7 @@ function UserDashboard({ currentUser, copy }) {
         const response = await fetch(API_URL);
         const data = await parseApiResponse(
           response,
-          "Unable to load your complaints. Make sure the backend server is running on http://localhost:5000."
+          `Unable to load your complaints. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
         );
 
         const sorted = [...data].sort(
@@ -101,7 +101,7 @@ function UserDashboard({ currentUser, copy }) {
 
       const data = await parseApiResponse(
         response,
-        "Unable to update support for this complaint. Make sure the backend server is running on http://localhost:5000."
+        `Unable to update support for this complaint. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {

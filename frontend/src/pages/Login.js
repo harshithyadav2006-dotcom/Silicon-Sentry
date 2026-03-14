@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { parseApiResponse } from "../utils/api";
 
-const API_URL = "http://localhost:5000/api/auth/login";
-const SIGNUP_API_URL = "http://localhost:5000/api/auth/signup";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/auth/login`;
+const SIGNUP_API_URL = `${process.env.REACT_APP_API_URL}/api/auth/signup`;
 
 function Login({ currentUser, onLogin, copy }) {
   const [role, setRole] = useState("user");
@@ -48,7 +48,7 @@ function Login({ currentUser, onLogin, copy }) {
 
       const data = await parseApiResponse(
         response,
-        "Unable to reach the backend. Make sure the backend server is running on http://localhost:5000."
+        `Unable to reach the backend. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {

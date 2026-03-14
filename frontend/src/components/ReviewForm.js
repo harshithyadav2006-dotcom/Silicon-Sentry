@@ -27,7 +27,7 @@ function ReviewForm({ complaintId, currentUser, onReviewAdded, copy }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/complaints/${complaintId}/reviews`,
+        `${process.env.REACT_APP_API_URL}/api/complaints/${complaintId}/reviews`,
         {
           method: "POST",
           headers: {
@@ -39,7 +39,7 @@ function ReviewForm({ complaintId, currentUser, onReviewAdded, copy }) {
 
       const data = await parseApiResponse(
         response,
-        "Unable to save the review. Make sure the backend server is running on http://localhost:5000."
+        `Unable to save the review. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {

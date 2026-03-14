@@ -34,7 +34,7 @@ const getTimelineSteps = (c) => {
   ];
 };
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/complaints`;
 const sortByUpvotes = (items) =>
   [...items].sort((first, second) => {
     const voteGap = (second.upvotes || 1) - (first.upvotes || 1);
@@ -56,7 +56,7 @@ function SubmitComplaint({ currentUser, copy, language }) {
         const response = await fetch(API_URL);
         const data = await parseApiResponse(
           response,
-          "Unable to load complaints. Make sure the backend server is running on http://localhost:5000."
+          `Unable to load complaints. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
         );
         setAllComplaints(sortByUpvotes(data));
         const mine = sortByUpvotes(
@@ -139,7 +139,7 @@ function SubmitComplaint({ currentUser, copy, language }) {
 
       const data = await parseApiResponse(
         response,
-        "Unable to upvote this complaint. Make sure the backend server is running on http://localhost:5000."
+        `Unable to upvote this complaint. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {

@@ -9,7 +9,7 @@ import {
   formatTimelineEntry,
 } from "../content/formatters";
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/complaints`;
 const statusOptions = ["Open", "In Progress", "Resolved"];
 const assignmentOptions = [
   "BBMP Roads",
@@ -52,15 +52,15 @@ function AdminDashboard({ currentUser, copy }) {
 
       const complaintsData = await parseApiResponse(
         complaintsRes,
-        "Unable to load dashboard data. Make sure the backend server is running on http://localhost:5000."
+        `Unable to load dashboard data. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
       const summaryData = await parseApiResponse(
         summaryRes,
-        "Unable to load dashboard summary. Make sure the backend server is running on http://localhost:5000."
+        `Unable to load dashboard summary. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
       const heatMapData = await parseApiResponse(
         heatMapRes,
-        "Unable to load heat map data. Make sure the backend server is running on http://localhost:5000."
+        `Unable to load heat map data. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       setComplaints(complaintsData);
@@ -175,7 +175,7 @@ function AdminDashboard({ currentUser, copy }) {
 
       const data = await parseApiResponse(
         response,
-        "Unable to update the complaint. Make sure the backend server is running on http://localhost:5000."
+        `Unable to update the complaint. Make sure the backend server is running on ${process.env.REACT_APP_API_URL}.`
       );
 
       if (!response.ok) {
