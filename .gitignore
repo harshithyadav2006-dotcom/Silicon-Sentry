@@ -1,3 +1,8 @@
-backend/.env
-backend/node_modules
-frontend/node_modules
+node_modules/
+build/
+*.zip
+*.rar
+.env
+frontend/build/
+frontend/node_modules/
+backend/node_modules/
